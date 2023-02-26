@@ -40,6 +40,7 @@ npm run start:dev
 Then navigate to http://localhost:4200
 
 ## Tree
+```bash
 .
 ├── client
 │   ├── Dockerfile
@@ -110,7 +111,7 @@ Then navigate to http://localhost:4200
     └── views
         ├── error.ejs
         └── index.ejs
-
+```
 
 ## Build
 
