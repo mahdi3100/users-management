@@ -1,0 +1,61 @@
+
+
+<ng-template #headerApp >
+ <!-- <strong *ngIf="user">
+    Hello ,<b>{{user.email}}</b>
+  </strong>-->
+  <div class="box">
+    <nav class="level">
+
+      <div class="level-left">
+        <div class="level-item">
+          <p class="is-size-5">
+            <strong>
+              Employee Registry
+          </strong>
+          </p>
+        </div>
+        <div class="level-item">
+          <nav>
+            <a class="link"
+            routerLink="/home"
+            routerLinkActive="activebutton"
+            ariaCurrentWhenActive="page">
+           Home
+         </a> 
+         <a class="link"
+            routerLink="/profile"
+            routerLinkActive="activebutton"
+            ariaCurrentWhenActive="page">
+           Profile
+         </a>
+          </nav>
+          </div>
+      </div>
+
+      <div class="level-right">
+        <div class="level-item">
+          <p class="is-size-6">
+            <strong *ngIf="user">
+              Hello ,<b>{{user.firstname}}</b>
+            </strong>
+          </p>
+        </div>
+       
+
+        <div class="level-item" *ngIf="user">
+         
+          <a class="button" (click)="logout()">
+         Logout
+       </a> 
+        </div>
+
+
+      </div>
+
+    </nav>
+  </div>
+
+  </ng-template>
+<ng-container *ngTemplateOutlet="headerApp; context:headerContext"   ></ng-container>
+<router-outlet></router-outlet>

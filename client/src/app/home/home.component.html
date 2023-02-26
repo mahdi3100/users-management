@@ -1,0 +1,208 @@
+<div class="block">
+  <!--ToolBar-->
+  <!--<div class="block" style=" width: 400; margin: 20px auto; border-radius: 49px">-->
+  <div class="field is-grouped is-center" style="justify-content: center;">
+
+    <!--ImportCSVui -->
+    <div class="control">
+
+      <div class="file is-primary is-rounded">
+        <label class="file-label">
+          <input class="file-input " [disabled]="loadingCSV" (change)="onUpload($event)" type="file" name="file" />
+          <span class="file-cta">
+            <span *ngIf="!loadingCSV; else showloaderCSV" class="file-icon">
+
+              <i class="fas fa-upload"></i>
+
+
+
+              <!-- {
+                                    (!this.state.loadFile)
+                                        ?
+                                        <i class="fas fa-upload"></i>
+                                        :
+                                        <div class="loader is-centered is-loading" ></div>
+                                }-->
+
+            </span>
+            <ng-template #showloaderCSV>
+              <div class="loader is-centered is-loading"></div>
+            </ng-template>
+            <span class="file-label">
+              Imort CSV File
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <p class="help is-danger">{{errorimportCSV}}</p>
+
+    </div>
+
+
+
+    <!-- <ButtonAddUser />-->
+    <button (click)="toggleUserBox()" class="button is-info is-rounded">
+      <span class="icon">
+
+        <i class="fas fa-user-plus"></i>
+
+      </span>
+      <span>Add User</span>
+    </button>
+
+
+    <!-- <BoxSignUp showSignup={showSignup} setShowSignup={() => setShowSignup(false)} />-->
+
+  </div>
+  <!-- </div>-->
+
+
+
+  <div style='flex-direction:row;display: flex; flex-wrap: wrap; max-width: 700px; margin: auto'>
+
+    <div *ngIf="loaderAllUsers;" style="margin: auto;"> <i class="fas fa-circle-notch fa-spin fa-3x"></i></div>
+
+    <div *ngIf="errorAllUsers;" style="width: 100%;text-align: center;"
+      class="notification is-warning is-light is-fullwidth">
+      <button class="delete"></button>
+      {{errorAllUsers}}
+    </div>
+    <!--Employee-->
+    <div class="card" *ngFor="let user of allUsers" style="width: 300px; margin: 10px auto;">
+
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-100x100">
+              <i class="fas fa-user" style="font-size: 100px;"></i>
+            </figure>
+          </div>
+          <div class="media-content">
+
+
+            <p class="title is-4">{{user.firstname}}</p>
+            <p class="subtitle is-6">{{user.lastname}}</p>
+          </div>
+        </div>
+
+        <div class="content">
+          <div style=" display: flex; justify-content: center; margin-bottom: 10px;">
+            <span class="icon is-medium">
+              <i class="fas fa-envelope"></i>
+            </span>
+
+            <p>userInfo.address</p>
+          </div>
+          <div style=" display: flex; justify-content: center; margin-bottom: 10px;">
+            <span class="icon is-medium">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <p>{{user.role}}</p>
+          </div>
+          <div style=" display: flex; justify-content: center; margin-bottom: 10px;">
+            <span class="icon is-medium">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <p>{{user.role}}</p>
+          </div>
+
+
+          <!--<div (click)="toProfile($event , user)" class="button is-fullwidth is-rounded is-info">Profile</div>-->
+          <a [routerLink]="['/profile', user.firstname]" class="button is-fullwidth is-rounded is-info">Profile</a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="isBoxVisible">
+
+  <div class="box-container">
+
+
+    <p class="close-icon" (click)="toggleUserBox()">&times;</p>
+    <div class="box">
+      <form #adduser="ngForm" (ngSubmit)="addProfileBox(adduser)" novalidate>
+
+        <div class="field">
+          <div class="control has-icons-left has-icons-right">
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+            <input class="input " ngModel required name="firstname" type="text" placeholder="First name">
+            <span class="icon is-small is-right">
+              <i class="fas fa-check"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control has-icons-left has-icons-right">
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+            <input class="input " required ngModel name="lastname" type="text" placeholder="Last name">
+            <span class="icon is-small is-right">
+              <i class="fas fa-check"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control has-icons-left has-icons-right">
+            <input class="input " ngModel required name="email" type="text" placeholder="Email">
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+            <span class="icon is-small is-right">
+              <i class="fas fa-check"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control has-icons-left has-icons-right">
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+            <input [ngClass]="['input',stateInput]" type="password" (ngModelChange)="checkPassword($event)" required
+              [(ngModel)]="password" name="password" placeholder="Password">
+            <span class="icon is-small is-right">
+              <i class="fas fa-eye"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control has-icons-left has-icons-right">
+            <span class="icon is-small is-left">
+              <i class="fas fa-briefcase"></i>
+            </span>
+            <input class="input " required ngModel name="role" type="text" placeholder="Role">
+            <span class="icon is-small is-right">
+              <i class="fas fa-check"></i>
+            </span>
+          </div>
+        </div>
+
+
+
+
+        <div class="control fullwidth">
+          <button type="submit" [disabled]="loadingAdd" class="button is-link is-fullwidth">Add</button>
+        </div>
+
+
+        <p class="help is-danger">{{errorAddUser}}</p>
+
+
+
+      </form>
+    </div>
+
+  </div>
+  <!--
+ 
+-->
+</ng-container>

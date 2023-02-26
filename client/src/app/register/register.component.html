@@ -1,0 +1,139 @@
+
+<div class="box" style="width: 400px; margin: auto">
+    
+    <!--
+    <div ng-include="true ? 'signup.html' : 'signin.html'"></div>
+   -->
+   <!-- <div ng-if="x"  ng-include="'signup.html'"></div> -->
+   <!--  <div ng-include="'./signup.html'"></div>-->
+
+   <ng-container *ngIf="UPIN; then signInTemplate; else signUpTemplate"></ng-container> 
+ 
+<ng-template #signInTemplate> 
+  <h4>Sing-In</h4>
+    <form #f="ngForm" (ngSubmit)="signin(f)" novalidate>
+      
+        <div class="field">
+          <div class="control has-icons-left has-icons-right">
+            <input class="input " ngModel required  name="email" type="text" placeholder="Email" >
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+            <span class="icon is-small is-right">
+              <i class="fas fa-check"></i>
+            </span>
+          </div>
+    
+        </div>
+
+      
+        <div class="field">
+          <div class="control has-icons-left has-icons-right">
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+            <input class="input " type="password" ngModel required  name="password"  placeholder="Password" >
+            <span class="icon is-small is-right">
+              <i class="fas fa-eye"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control fullwidth">
+            <button type="submit" class="button is-link fullwidth" [ngClass]="{'is-loading':loadingSign}">Submit</button>
+          </div>
+          <div class="control fullwidth">
+            <button  (click)="toggleSign()"  [disabled]="loadingSign"   class="button is-link is-light fullwidth">Create a new account</button>
+          </div>
+       
+        </div>
+        <p class="help is-danger">{{errorSignIn}}</p>
+    
+      </form> 
+
+</ng-template> 
+ 
+<ng-template #signUpTemplate> 
+  <!-- Content for logged-out users --> 
+  <h4>Sing-Up</h4>
+  <form  #f="ngForm" (ngSubmit)="signup(f)" novalidate>
+
+    <div class="field">
+      <div class="control has-icons-left has-icons-right">
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+        <input class="input " ngModel required name="firstname" type="text" placeholder="First name" >
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </div>   
+    </div>
+    <div class="field">
+      <div class="control has-icons-left has-icons-right">
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+        <input class="input " ngModel required  name="lastname" type="text" placeholder="Last name" >
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </div>   
+    </div>
+   <div class="field">
+      <div class="control has-icons-left has-icons-right">
+        <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <input class="input "  required  ngModel name="email" type="email" placeholder="Email" >
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </div>   
+    </div>
+
+      
+    <div class="field">
+      <div class="control has-icons-left has-icons-right">
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+        <input [ngClass]="['input',stateInput]" type="password" (ngModelChange)="checkPassword($event)"  required [(ngModel)]="password"  name="password"  placeholder="Password" >
+        <span class="icon is-small is-right">
+          <i class="fas fa-eye"></i>
+        </span>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control has-icons-left has-icons-right">
+        <span class="icon is-small is-left">
+          <i class="fas fa-briefcase"></i>
+        </span>
+        <input class="input "  required ngModel  name="role" type="text" placeholder="Role" >
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </div>   
+    </div>
+
+
+
+    <div class="field is-grouped">
+      <div class="control fullwidth">
+        <button type="submit" class="button is-link fullwidth" [ngClass]="{'is-loading':loadingSign}">Submit</button>
+      </div>
+      <div class="control fullwidth">
+        <button   (click)="toggleSign()" [disabled]="loadingSign"  class="button is-link is-light fullwidth">You already have an account</button>
+      </div>
+    </div>
+
+    <p class="help is-danger">{{errorSignUp}}</p>
+
+
+
+</form>
+
+</ng-template> 
+</div>

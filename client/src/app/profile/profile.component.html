@@ -1,0 +1,235 @@
+<div class="block">
+    
+    <!--
+        loader
+      -->
+    <div *ngIf="loadingshowProfile; else showProfile"> 
+    <div class="loader is-centered is-loading" style="margin: 20px auto; height: 70px; width: 70px"></div>
+   </div> 
+
+   <ng-template #showProfile>
+
+
+        <!-- Button Edit -->
+
+
+        <div class="field is-grouped is-center" style="justify-content: center;">
+
+            <!--delete user -->
+            <div class="control">
+                <!--
+                        http://${baseURL}/deleteuser?username=${userInfo.username}
+                    -->
+                <button class="button is-warning is-rounded" [disabled]="loadingDeleteUser" (click)="deleteUser()">
+                 <span *ngIf="!loadingDeleteUser; else showloaderDelte" class="file-icon">
+                    <span class="icon">
+
+                        <i class="fas fa-trash"></i>
+
+                    </span>
+                </span>
+                <ng-template #showloaderDelte>
+                    <div class="loader is-centered is-loading"></div>
+                  </ng-template>
+                    <span>Delete User</span>
+                </button>
+          
+
+            </div>
+
+
+            <!-- <ButtonAddUser />-->
+            <div class="control">
+                <button class="button is-info is-rounded" (click)="toggleUserBox()">
+                    <span class="icon">
+
+                        <i class="fas fa-user-plus"></i>
+
+                    </span>
+                    <span>Edit User</span>
+                </button>
+            </div>
+
+            <!-- <BoxSignUp showSignup={showSignup} setShowSignup={() => setShowSignup(false)} />-->
+
+        </div>
+
+
+        <!---->
+
+        <div class="card" style="margin: 10px auto;">
+
+            <div class="card-content">
+
+
+                <div class="content">
+                    <div style="display: flex; justify-content: space-around ;margin: 10px auto">
+
+                        <div style="text-align:left;display: flex;flex-direction: row;">
+                            <figure class="image is-100x100">
+                                <i class="fas fa-user" style="font-size: 100px;"></i>
+                            </figure>
+                            <div>
+                            <h4>{{firstname}}
+                            </h4>
+                            <h6>
+                                {{lastname}}
+                            </h6>
+                          </div>
+                        </div>
+
+
+                        <div>
+                   
+                            <div style="display: flex ; justify-content: center ; margin: 10px auto">
+                                <span class="icon is-medium">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <p>{{role}}</p>
+                            </div>
+                            <div style="display: flex ; justify-content: center ; margin-bottom: 10px ">
+                                <span class="icon is-medium">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <p>{{email}}</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="content">
+                    <div className="comments">
+                        <article class="message">
+
+                            <div><b>comment.user</b></div>
+                            <div class="message-body">
+                                <div><b>comment.user</b></div>
+                                <p>Comment txt</p>
+                                <div style="font-size: 13px">
+                                    <b>
+                                        <!---
+                                    <Moment fromNow ago>{comment.date}</Moment>
+                                   -->
+                                    </b>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                    <div class="addcomment">
+
+                        <div class="field">
+                            <label class="label">Add Comment</label>
+                            <div class="control">
+                                <textarea class="textarea" placeholder="Textarea"></textarea>
+                            </div>
+                        </div>
+
+
+
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link">Submit</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+   </ng-template>
+    
+</div>
+
+
+<ng-container *ngIf="isEditBoxVisible">
+
+    <div class="box-container">
+  
+  
+      <p class="close-icon" (click)="toggleUserBox()">&times;</p>
+      <div class="box">
+        <form #edituserFrom="ngForm" (ngSubmit)="editProfileBox(edituserFrom)" novalidate>
+  
+          <div class="field">
+            <div class="control has-icons-left has-icons-right">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <input class="input " [ngModel]="firstname"  name="firstname" type="text" placeholder="First name">
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control has-icons-left has-icons-right">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <input class="input " [ngModel]="lastname"   name="lastname" type="text" placeholder="Last name">
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+          </div>
+  
+          <div class="field">
+            <div class="control has-icons-left has-icons-right">
+              <input class="input " [ngModel]="email"   name="email" type="text" placeholder="Email">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+          </div>
+  
+          <div class="field">
+            <div class="control has-icons-left has-icons-right">
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+              <input [ngClass]="['input',stateInput]" type="password" (ngModelChange)="checkPassword($event)" 
+                [(ngModel)]="password" name="password" placeholder="Password">
+              <span class="icon is-small is-right">
+                <i class="fas fa-eye"></i>
+              </span>
+            </div>
+          </div>
+  
+          <div class="field">
+            <div class="control has-icons-left has-icons-right">
+              <span class="icon is-small is-left">
+                <i class="fas fa-briefcase"></i>
+              </span>
+              <input class="input " [ngModel]="role"  name="role" type="text" placeholder="Role">
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </div>
+          </div>
+  
+  
+  
+  
+          <div class="control fullwidth">
+            <button type="submit" [disabled]="loadingEdit" class="button is-link is-fullwidth">Edit</button>
+          </div>
+  
+  
+          <p class="help is-danger">{{errorEditUser}}</p>
+  
+  
+  
+        </form>
+      </div>
+  
+    </div>
+
+  </ng-container>

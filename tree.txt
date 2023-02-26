@@ -1,0 +1,105 @@
+.
+├── client
+│   ├── angular.json
+│   ├── Coding Challenge - Mitarbeiterliste.csv
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── src
+│   │   ├── all.min.css
+│   │   ├── app
+│   │   │   ├── app.component.css
+│   │   │   ├── app.component.html
+│   │   │   ├── app.component.spec.ts
+│   │   │   ├── app.component.ts
+│   │   │   ├── app.module.ts
+│   │   │   ├── app-routing.module.ts
+│   │   │   ├── auth.guard.spec.ts
+│   │   │   ├── auth.guard.ts
+│   │   │   ├── auth.service.spec.ts
+│   │   │   ├── auth.service.ts
+│   │   │   ├── header
+│   │   │   │   ├── header.component.css
+│   │   │   │   ├── header.component.html
+│   │   │   │   ├── header.component.spec.ts
+│   │   │   │   └── header.component.ts
+│   │   │   ├── home
+│   │   │   │   ├── home.component.css
+│   │   │   │   ├── home.component.html
+│   │   │   │   ├── home.component.spec.ts
+│   │   │   │   ├── home.component.ts
+│   │   │   │   ├── home.service.spec.ts
+│   │   │   │   └── home.service.ts
+│   │   │   ├── listener.service.spec.ts
+│   │   │   ├── listener.service.ts
+│   │   │   ├── model
+│   │   │   │   └── user.ts
+│   │   │   ├── profile
+│   │   │   │   ├── profile.component.css
+│   │   │   │   ├── profile.component.html
+│   │   │   │   ├── profile.component.spec.ts
+│   │   │   │   ├── profile.component.ts
+│   │   │   │   ├── profile.service.spec.ts
+│   │   │   │   └── profile.service.ts
+│   │   │   └── register
+│   │   │       ├── register.component.css
+│   │   │       ├── register.component.html
+│   │   │       ├── register.component.spec.ts
+│   │   │       ├── register.component.ts
+│   │   │       ├── register.service.spec.ts
+│   │   │       └── register.service.ts
+│   │   ├── assets
+│   │   │   └── webfonts
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── main.ts
+│   │   └── styles.css
+│   ├── tsconfig.app.json
+│   ├── tsconfig.json
+│   └── tsconfig.spec.json
+├── README.md
+├── server
+│   ├── csv
+│   ├── nest-cli.json
+│   ├── next.config.js
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── README.md
+│   ├── src
+│   │   ├── app.controller.spec.ts
+│   │   ├── app.controller.ts
+│   │   ├── app.module.ts
+│   │   ├── app.service.ts
+│   │   ├── auth
+│   │   │   ├── auth.controller.spec.ts
+│   │   │   ├── auth.controller.ts
+│   │   │   ├── auth.service.spec.ts
+│   │   │   └── auth.service.ts
+│   │   ├── checkSession.ts
+│   │   ├── db
+│   │   │   └── connectDB.ts
+│   │   ├── main.ts
+│   │   ├── upload
+│   │   │   ├── upload.controller.spec.ts
+│   │   │   ├── upload.controller.ts
+│   │   │   ├── upload.service.spec.ts
+│   │   │   └── upload.service.ts
+│   │   ├── users
+│   │   │   ├── dto
+│   │   │   │   ├── create-user.dto.ts
+│   │   │   │   └── update-user.dto.ts
+│   │   │   ├── entities
+│   │   │   │   └── user.entity.ts
+│   │   │   ├── users.controller.spec.ts
+│   │   │   ├── users.controller.ts
+│   │   │   ├── users.module.ts
+│   │   │   ├── users.service.spec.ts
+│   │   │   └── users.service.ts
+│   │   └── withSession.ts
+│   ├── test
+│   │   ├── app.e2e-spec.ts
+│   │   └── jest-e2e.json
+│   ├── tsconfig.build.json
+│   └── tsconfig.json
+└── tree.txt
+
+21 directories, 118 files
